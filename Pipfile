@@ -6,6 +6,13 @@ name = "pypi"
 [packages]
 tweepy = "*"
 pandas = "*"
+lxml = "*"
+html5lib = "*"
+beautifulsoup4 = "*"
+requests = "*"
+selenium = "3.141.0"
+pip = "*"
+install = "*"
 
 [dev-packages]
 
