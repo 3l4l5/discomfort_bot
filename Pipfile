@@ -13,6 +13,8 @@ requests = "*"
 selenium = "3.141.0"
 pip = "*"
 install = "*"
+twitter = "*"
+config = "*"
 
 [dev-packages]
 

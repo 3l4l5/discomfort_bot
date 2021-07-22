@@ -145,4 +145,6 @@ bot_list.json
 .bash_history
 .pki/
 .local/
+makeKeys.py
+config.txt
 # End of https://www.toptal.com/developers/gitignore/api/python

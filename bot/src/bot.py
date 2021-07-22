@@ -2,7 +2,7 @@ from lib.getDataClass import GetJsonData
 from lib.calkDiscomfortIndexClass import CalcDiscomfotIndexClass
 from lib.twitterSenderClass import TwitterSenderClass
 import json, os
-import datetime
+import datetime, time
 
 LIST_DIR = os.path.join("..", "..", "bot_list.json")
 
@@ -29,7 +29,6 @@ def main():
         cdic = CalcDiscomfotIndexClass(temp_dict[locate_dict["id"]])
 
         index = cdic.calk()
-        index = 100
 
         text = "【" + str(now_date) + "】現在\n"
 
@@ -52,6 +51,7 @@ def main():
         elif index >= 85:
             text += "👹不快指数は{}（暑くてたまらない）です。\nとても暑いので外出の際は熱中症に気をつけましょう".format(str(round(index, 2)))
 
+        text += "\n気温：" + str(temp_dict[locate_dict["id"]]["temp"][0]) + "  湿度：" + str(str(temp_dict[locate_dict["id"]]["humidity"][0]))
         print(text)
         tsc = TwitterSenderClass(
             text=text,
@@ -60,8 +60,11 @@ def main():
             access_token=access_token,
             access_token_secret=access_token_secret
             )
-        tsc.push()
-        break
+        try:
+            tsc.push()
+        except Exception as e:
+            print(e)
+            continue
 
 
         print(location, ":", index)
